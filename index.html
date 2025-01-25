@@ -4,11 +4,117 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buyer Persona: Javier Torres</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 90%;
+      max-width: 800px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .header {
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+    .section {
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    .section h2 {
+      font-size: 1.5em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .section p, .list {
+      line-height: 1.6;
+      color: #555;
+    }
+    .list {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .list li {
+      margin-bottom: 5px;
+    }
+    .footer {
+      background-color: #007bff;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+    .speak-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .speak-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="header">
+      <h1>Buyer Persona: Javier Torres</h1>
+      <p>Un profesional de marketing digital que busca innovación, sostenibilidad y salud.</p>
+    </div>
+
+    <div class="section">
+      <h2>Perfil General</h2>
+      <p><strong>Nombre:</strong> Javier Torres</p>
+      <p><strong>Edad:</strong> 28 años</p>
+      <p><strong>Ocupación:</strong> Profesional en Marketing Digital</p>
+      <p><strong>Ubicación:</strong> Quito, Ecuador</p>
+      <p><strong>Nivel Socioeconómico:</strong> Clase Media</p>
+    </div>
+
+    <div class="section">
+      <h2>Hábitos y Comportamientos</h2>
+      <p>Javier es una persona activa, siempre en busca de nuevas experiencias. Usa redes sociales diariamente, especialmente Instagram, TikTok y LinkedIn. Además, asiste a eventos de tecnología y marketing.</p>
+    </div>
+
+    <div class="section">
+      <h2>Intereses y Motivaciones</h2>
+      <p>Le interesan los productos saludables, la tecnología y el cuidado del medio ambiente. Busca productos que lo hagan sentir que está cuidando su salud y prefiere empaques modernos y ecológicos.</p>
+    </div>
+
+    <div class="footer">
+      <p>Este perfil de buyer persona está diseñado para estrategias de marketing personalizadas.</p>
+    </div>
+
+    <button class="speak-btn" onclick="speakPersona()">🔊 Haz que Javier hable</button>
+  </div>
+
   <script>
-    // Función que hace que Javier hable automáticamente
     function speakPersona() {
+      // Textos que Javier va a leer en voz alta
       const speechText = `
         Hola, soy Javier Torres. Soy un profesional de marketing digital de 28 años que vive en Quito, Ecuador.
         Me interesan los productos saludables, sostenibles e innovadores.
@@ -17,18 +123,15 @@
         Estoy emocionado por descubrir nuevos productos que alineen con mi estilo de vida.
       `;
 
-      // Configuración del texto para síntesis de voz
+      // Configurar el texto para síntesis de voz
       const utterance = new SpeechSynthesisUtterance(speechText);
-      utterance.lang = "es-ES"; // Idioma español
+      utterance.lang = "es-ES"; // Español
       utterance.rate = 1; // Velocidad de lectura
       utterance.pitch = 1; // Tono
 
       // Reproducir la voz
       speechSynthesis.speak(utterance);
     }
-
-    // Hacer que hable automáticamente al cargar la página
-    window.onload = speakPersona;
   </script>
 </body>
 </html>
