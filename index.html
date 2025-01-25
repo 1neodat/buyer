@@ -3,92 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buyer Persona Hablando</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .chat-container {
-      width: 400px;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      padding: 20px;
-    }
-    .chat-box {
-      height: 300px;
-      overflow-y: auto;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      background-color: #f9f9f9;
-    }
-    .persona-message {
-      text-align: left;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <title>Buyer Persona: Javier Torres</title>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-box" id="chat-box">
-      <!-- Mensajes aparecerán aquí -->
-    </div>
-    <button onclick="startSpeaking()">¡Haz que hable!</button>
-  </div>
-
   <script>
-    const chatBox = document.getElementById("chat-box");
+    // Función que hace que Javier hable automáticamente
+    function speakPersona() {
+      const speechText = `
+        Hola, soy Javier Torres. Soy un profesional de marketing digital de 28 años que vive en Quito, Ecuador.
+        Me interesan los productos saludables, sostenibles e innovadores.
+        Uso redes sociales como Instagram y TikTok diariamente, y me gusta probar bebidas con sabores únicos.
+        Prefiero productos bajos en calorías, con empaques reciclables o biodegradables.
+        Estoy emocionado por descubrir nuevos productos que alineen con mi estilo de vida.
+      `;
 
-    // Mensajes de la buyer persona
-    const messages = [
-      "¡Hola! Soy Javier Torres, tu buyer persona ideal.",
-      "Tengo 28 años y soy profesional en marketing digital.",
-      "Me interesan mucho los productos innovadores, especialmente aquellos que son saludables.",
-      "Prefiero bebidas bajas en calorías y con ingredientes naturales.",
-      "Valoro las marcas que utilizan empaques ecológicos y responsables.",
-      "¡Estoy emocionado por conocer tu producto!"
-    ];
+      // Configuración del texto para síntesis de voz
+      const utterance = new SpeechSynthesisUtterance(speechText);
+      utterance.lang = "es-ES"; // Idioma español
+      utterance.rate = 1; // Velocidad de lectura
+      utterance.pitch = 1; // Tono
 
-    // Función para mostrar mensajes y hablar
-    function startSpeaking() {
-      messages.forEach((message, index) => {
-        setTimeout(() => {
-          // Mostrar el mensaje en la caja de chat
-          const messageDiv = document.createElement("div");
-          messageDiv.className = "persona-message";
-          messageDiv.textContent = message;
-          chatBox.appendChild(messageDiv);
-          chatBox.scrollTop = chatBox.scrollHeight; // Desplazar al final del chat
-
-          // Convertir el texto en voz
-          const utterance = new SpeechSynthesisUtterance(message);
-          utterance.lang = "es-ES"; // Español
-          speechSynthesis.speak(utterance);
-        }, index * 3000); // Intervalo de 3 segundos entre mensajes
-      });
+      // Reproducir la voz
+      speechSynthesis.speak(utterance);
     }
+
+    // Hacer que hable automáticamente al cargar la página
+    window.onload = speakPersona;
   </script>
 </body>
 </html>
