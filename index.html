@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buyer Persona</title>
+  <title>Buyer Persona Hablando</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,34 +55,38 @@
     <div class="chat-box" id="chat-box">
       <!-- Mensajes aparecerán aquí -->
     </div>
-    <button onclick="introducePersona()">¡Escuchar a la Buyer Persona!</button>
+    <button onclick="startSpeaking()">¡Haz que hable!</button>
   </div>
 
   <script>
     const chatBox = document.getElementById("chat-box");
 
-    function introducePersona() {
-      // Limpiar el cuadro de chat
-      chatBox.innerHTML = "";
+    // Mensajes de la buyer persona
+    const messages = [
+      "¡Hola! Soy Javier Torres, tu buyer persona ideal.",
+      "Tengo 28 años y soy profesional en marketing digital.",
+      "Me interesan mucho los productos innovadores, especialmente aquellos que son saludables.",
+      "Prefiero bebidas bajas en calorías y con ingredientes naturales.",
+      "Valoro las marcas que utilizan empaques ecológicos y responsables.",
+      "¡Estoy emocionado por conocer tu producto!"
+    ];
 
-      // Buyer persona habla sobre sí misma y sus preferencias
-      const messages = [
-        "¡Hola! Soy Javier Torres, tu buyer persona ideal.",
-        "Tengo 28 años, soy profesional en marketing digital y me interesa mucho todo lo relacionado con productos innovadores.",
-        "Prefiero bebidas bajas en calorías y naturales. Me encanta probar nuevos sabores, especialmente si son saludables.",
-        "Además, valoro las marcas que utilizan empaques ecológicos y responsables.",
-        "¿Qué producto tienes para ofrecerme? ¡Estoy interesado en saber más!"
-      ];
-
-      // Mostrar los mensajes uno por uno
+    // Función para mostrar mensajes y hablar
+    function startSpeaking() {
       messages.forEach((message, index) => {
         setTimeout(() => {
+          // Mostrar el mensaje en la caja de chat
           const messageDiv = document.createElement("div");
           messageDiv.className = "persona-message";
           messageDiv.textContent = message;
           chatBox.appendChild(messageDiv);
-          chatBox.scrollTop = chatBox.scrollHeight; // Desplazarse al final
-        }, index * 2000); // Intervalo de 2 segundos entre mensajes
+          chatBox.scrollTop = chatBox.scrollHeight; // Desplazar al final del chat
+
+          // Convertir el texto en voz
+          const utterance = new SpeechSynthesisUtterance(message);
+          utterance.lang = "es-ES"; // Español
+          speechSynthesis.speak(utterance);
+        }, index * 3000); // Intervalo de 3 segundos entre mensajes
       });
     }
   </script>
