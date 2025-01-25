@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Persona Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      width: 400px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+    .chat-box div {
+      margin-bottom: 10px;
+    }
+    .user-message {
+      text-align: right;
+      color: #333;
+    }
+    .persona-message {
+      text-align: left;
+      color: #555;
+    }
+    .input-container {
+      display: flex;
+    }
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-right: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-box" id="chat-box">
+      <!-- Mensajes se mostrarán aquí -->
+    </div>
+    <div class="input-container">
+      <input type="text" id="user-input" placeholder="Escribe un mensaje..." />
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chat-box");
+
+    function sendMessage() {
+      const userInput = document.getElementById("user-input");
+      const userMessage = userInput.value.trim();
+
+      if (userMessage !== "") {
+        // Mostrar el mensaje del usuario
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-message";
+        userDiv.textContent = `Tú: ${userMessage}`;
+        chatBox.appendChild(userDiv);
+
+        // Respuesta de la buyer persona
+        const personaDiv = document.createElement("div");
+        personaDiv.className = "persona-message";
+
+        let response;
+        if (userMessage.toLowerCase().includes("salud")) {
+          response = "Me interesa que los productos sean bajos en calorías y naturales.";
+        } else if (userMessage.toLowerCase().includes("empaque")) {
+          response = "Prefiero marcas que utilicen empaques ecológicos y responsables.";
+        } else if (userMessage.toLowerCase().includes("tendencias")) {
+          response = "Siempre busco productos innovadores que sean saludables.";
+        } else {
+          response = "¡Cuéntame más sobre este producto, estoy interesado!";
+        }
+
+        personaDiv.textContent = `Buyer Persona: ${response}`;
+        chatBox.appendChild(personaDiv);
+
+        // Limpiar el input y hacer scroll
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+  </script>
+</body>
+</html>
